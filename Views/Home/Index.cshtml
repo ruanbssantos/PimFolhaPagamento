@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="container-formulario shadow" style="min-height:800px">
+            <form>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="sub-titulo-form">Cliente</label>
+                            </div>
+                        </div>
+                        <hr class="hr-form" />
+                        <div class="row">
+                            <div class="col-12 px-5">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="obgMark form-label" for="txt_cliente">Cliente</label>
+                                            <input type="text" name="txt_cliente" id="txt_cliente" class="form-control obg field_autoBusca" data-field_type="field_cliente" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="sub-titulo-form">Usuário</label>
+                            </div>
+                        </div>
+                        <hr class="hr-form" />
+                        <div class="row">
+                            <div class="col-12 px-5">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="obgMark form-label" for="txt_email">E-mail</label>
+                                            <input type="text" class="form-control obg" name="txt_email" id="txt_email" maxlength="50" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg col-xl">
+                                        <div class="form-group">
+                                            <label class="obgMark form-label" for="txt_nome">Nome</label>
+                                            <input type="text" class="form-control obg" name="txt_nome" id="txt_nome" maxlength="200" />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-auto col-xl-3">
+                                        <div class="form-group">
+                                            <label class="obgMark form-label" for="txt_dtNascimento">Data de Nascimento</label>
+                                            <input type="date" class="form-control obg" name="txt_dtNascimento" id="txt_dtNascimento" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center mt-5" id="div_containerBtnsPg">
+                        <input type="button" class="btn btn-primary" name="btn_resetSenha" id="btn_resetSenha" value="Resetar Senha" title="Resetar Senha" />
+                        <input type="button" class="btn btn-success" name="btn_gravar" id="btn_gravar" value="Gravar" title="Gravar" />
+                        <input type="button" class="btn btn-secondary" name="btn_voltar" id="btn_voltar" value="Voltar" title="Voltar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('#btn_gravar').on('click', function () {
+            $.ajax({
+                type: "POST",
+                Cache: false,
+                url: "../Home/Inserir",
+                data: { nome: '', cargo: 'T.I' },
+                success: function (result) {
+
+                    console.log(result);
+                    if (result.success) {
+                        alert(result.message);
+                    } else {
+                        var errorMessages = result.errors.join("\n");
+                        alert("Erros de validação:\n" + errorMessages);
+                    }
+                }
+            });
+        });
+    });
+</script>
