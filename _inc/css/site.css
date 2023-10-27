@@ -1,6 +1,317 @@
-.sub-titulo-form { 
+:root {
+    --color-padrao: #595C5F;
+    --color-padrao-light: #9B9D9E;
+    --color-padrao-light2: #d1d3e2;
+}
+
+/******************************************************************************************************/
+/*FONTS*/
+/******************************************************************************************************/
+
+/* MONTSERRAT */
+@font-face {
+    font-family: 'Montserrat100';
+    src: url('../fonts/Montserrat/Montserrat-Thin.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat200';
+    src: url('../fonts/Montserrat/Montserrat-ExtraLight.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat300';
+    src: url('../fonts/Montserrat/Montserrat-Light.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat400';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat500';
+    src: url('../fonts/Montserrat/Montserrat-Medium.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat600';
+    src: url('../fonts/Montserrat/Montserrat-SemiBold.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat700';
+    src: url('../fonts/Montserrat/Montserrat-Bold.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Montserrat800';
+    src: url('../fonts/Montserrat/Montserrat-ExtraBold.ttf') format('TrueType');
+}
+
+.fontFamilyMontserrat100 {
+    font-family: 'Montserrat100';
+}
+
+.fontFamilyMontserrat200 {
+    font-family: 'Montserrat200';
+}
+
+.fontFamilyMontserrat300 {
+    font-family: 'Montserrat300';
+}
+
+.fontFamilyMontserrat400 {
+    font-family: 'Montserrat400';
+}
+
+.fontFamilyMontserrat500 {
+    font-family: 'Montserrat500';
+}
+
+.fontFamilyMontserrat600 {
+    font-family: 'Montserrat600';
+}
+
+.fontFamilyMontserrat700 {
+    font-family: 'Montserrat700';
+}
+
+.fontFamilyMontserrat800 {
+    font-family: 'Montserrat800';
+}
+
+/* POPPINS */
+@font-face {
+    font-family: 'Poppins100';
+    src: url('../fonts/Poppins/Poppins-Thin.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Poppins200';
+    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Poppins300';
+    src: url('../fonts/Poppins/Poppins-Light.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Poppins400';
+    src: url('../fonts/Poppins/Poppins-Regular.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Poppins500';
+    src: url('../fonts/Poppins/Poppins-Medium.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Poppins600';
+    src: url('../fonts/Poppins/Poppins-SemiBold.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Poppins700';
+    src: url('../fonts/Poppins/Poppins-Bold.ttf') format('TrueType');
+}
+
+.fontFamilyPoppins100 {
+    font-family: 'Poppins100';
+}
+
+.fontFamilyPoppins200 {
+    font-family: 'Poppins200';
+}
+
+.fontFamilyPoppins300 {
+    font-family: 'Poppins300';
+}
+
+.fontFamilyPoppins400 {
+    font-family: 'Poppins400';
+}
+
+.fontFamilyPoppins500 {
+    font-family: 'Poppins500';
+}
+
+.fontFamilyPoppins600 {
+    font-family: 'Poppins600';
+}
+
+.fontFamilyPoppins700 {
+    font-family: 'Poppins700';
+}
+
+/* INTER */
+@font-face {
+    font-family: 'Inter100';
+    src: url('../fonts/Inter/Inter-Thin.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Inter200';
+    src: url('../fonts/Inter/Inter-ExtraLight.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Inter300';
+    src: url('../fonts/Inter/Inter-Light.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Inter400';
+    src: url('../fonts/Inter/Inter-Regular.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Inter500';
+    src: url('../fonts/Inter/Inter-Medium.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Inter600';
+    src: url('../fonts/Inter/Inter-SemiBold.ttf') format('TrueType');
+}
+
+@font-face {
+    font-family: 'Inter700';
+    src: url('../fonts/Inter/Inter-Bold.ttf') format('TrueType');
+}
+
+.fontFamilyInter100 {
+    font-family: 'Inter100';
+}
+
+.fontFamilyInter200 {
+    font-family: 'Inter200';
+}
+
+.fontFamilyInter300 {
+    font-family: 'Inter300';
+}
+
+.fontFamilyInter400 {
+    font-family: 'Inter400';
+}
+
+.fontFamilyInter500 {
+    font-family: 'Inter500';
+}
+
+.fontFamilyInter600 {
+    font-family: 'Inter600';
+}
+
+.fontFamilyInter700 {
+    font-family: 'Inter700';
+}
+
+
+
+/******************************************************************************************************/
+/*NAVBAR MENU TOPO*/
+/******************************************************************************************************/
+#menuTopo {
+    height: 72px;
+    border-bottom: 0.01px solid rgb(89,92,95, 0.5);
+}
+.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+    padding-left: 225px;
+    top: 72px;
+}
+.sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+    padding-top: 72px;
+}
+.divisor-logo-topo {
+    height: 72px;
+    width: 1px;
+    background-color: rgb(89,92,95, 0.5);
+}
+.sidebar-divider {
+    margin: 1rem;
+}
+.nav > .nav-item > .nav-link {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.nav > .nav-item > .nav-link:hover {
+    color: #FFFFFF;
+}
+
+#layoutSidenav #layoutSidenav_content {
+    min-height: calc(100vh - 72px);
+}
+
+.nav > .nav-item:first-child {
+    margin-top:1rem;
+}
+/******************************************************************************************************/
+/*BOOTSTRAP AJUSTES*/
+/******************************************************************************************************/
+.form-control:focus, .datatable-input:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: var(--color-padrao-light);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(89,92,95, 0.25);
+}
+
+.form-control {
+    border-color: var(--color-padrao-light2);
+}
+/******************************************************************************************************/
+/*AUTO BUSCA*/
+/******************************************************************************************************/
+.btn_fieldAutoBusca:hover:disabled, .btn_fieldUpload:hover:disabled {
+    border-color: var(--color-padrao-light2);
+}
+
+.btn_fieldAutoBusca, .btn_fieldUpload {
+    color: #858796;
+    border-color: var(--color-padrao-light2);
+    min-height: 38px !important;
+}
+
+
+
+/******************************************************************************************************/
+/*FORMULÁRIOS*/
+/******************************************************************************************************/
+body {
+    color: var(--color-padrao);
+    font-family: 'Poppins400';
+}
+
+.container-field {
+    align-items: center;
+}
+
+
+::placeholder {
+    opacity: 0.7 !important;
+}
+
+.form-control {
+    color: var(--color-padrao);
+}
+
+.form-control:focus {
+    color: var(--color-padrao);
+}
+
+.titulo-pg {
+    font-family: 'Montserrat600';
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.sub-titulo-form {
+    font-family: 'Poppins500';
     font-size: 20px;
-    margin: 0px !important; 
+    margin: 0px !important;
 }
 
 .form-group {
@@ -11,11 +322,14 @@
     background-color: white;
     border-radius: 11px;
     width: 100%;
-    padding: 35px;
+    padding: 25px;
+    margin-bottom: 30px;
 }
 
 
-/***************** SCROLL PERSONALIZADOS PADRÃO *****************/
+/******************************************************************************************************/
+/*SCROLL PERSONALIZADOS PADRÃO*/
+/******************************************************************************************************/
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
