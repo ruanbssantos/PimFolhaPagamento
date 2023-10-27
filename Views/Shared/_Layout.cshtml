@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -29,6 +29,10 @@
     <!--CONFIGURAÇÃO SITE-->
     <link rel="stylesheet" href="~/_inc/css/site.css" asp-append-version="true" />
     <script src="~/_inc/js/site.js" asp-append-version="true"></script>
+
+
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open%20Sans">-->
+
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark shadow-lg" id="menuTopo">
@@ -80,7 +84,7 @@
                         </div>
                         <hr class="sidebar-divider" />
                         <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Home/Index">
+                            <a class="nav-link text-center d-block" href="~/Cbo/ConsultaCbo">
                                 <i class="fa-solid fa-rectangle-list d-block mb-1"></i>
                                 CBO
                             </a>
@@ -111,9 +115,9 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4 titulo-pg">Tables</h1>
+                    <h1 class="mt-4 titulo-pg">@ViewData["Title"]</h1>
                     <ol class="breadcrumb mb-4">
-                        @foreach (var item in ViewBag.Breadcrumb)
+                        @*@foreach (var item in ViewBag.Breadcrumb)
                         {
                             <li class="breadcrumb-item">
                                 @if (item.Url == null)
@@ -125,7 +129,7 @@
                                     <a href="@item.Url">@item.Title</a>
                                 }
                             </li>
-                        }
+                        }*@
                     </ol>
                 </div>
                 <div class="container-fluid px-4">

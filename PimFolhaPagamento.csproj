@@ -236,7 +236,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\BreadcrumbItem.cs" />
     <Compile Include="Classes\NavigationService.cs" />
+    <Compile Include="Classes\ResultadoBancoDados.cs" />
     <Compile Include="Controllers\AutoBusca\AutoBuscaController.cs" />
+    <Compile Include="Controllers\Cbo\CboController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2442,6 +2444,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Procedures\" />
     <Folder Include="Views\AutoBusca\" />
   </ItemGroup>
   <ItemGroup>
@@ -2469,6 +2472,7 @@
     <Content Include="_inc\fonts\Poppins\Poppins-SemiBold.ttf" />
     <Content Include="_inc\fonts\Poppins\Poppins-Thin.ttf" />
     <Content Include="Views\Home\Consulta.cshtml" />
+    <Content Include="Views\Cbo\ConsultaCbo.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

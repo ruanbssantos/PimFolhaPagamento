@@ -859,17 +859,16 @@ function fcn_fieldAutoBusca_gera(p_seletorAlvo) {
 
                         if (pstr_value != '' && pstr_value != undefined && pstr_value != null) dados[campo] = pstr_value
                     });
-
+                     
                     $.ajax({
                         type: "POST",
                         datatype: "json",
-                        url: vstr_localJs + 'webservices/web_camposPreDefinidos.asp?tipoOper=SEL&acao=' + $("#" + vstr_idCampo).data('field_type'),
+                        url: window.location.origin + '/AutoBusca/' + $("#" + vstr_idCampo).data('field_type'),
                         cache: false,
                         data: dados
                     }).done(function (data) {
-                        if (data.sessaoExpirada) return false;
-                        if (data.resultado.length > 0) {
-                            dados_retorno = data.resultado
+                        if (data.Resultado[0].length > 0) {
+                            dados_retorno = data.Resultado[0]
                         } else {
                             dados_retorno = [{
                                 label: 'Nenhum registro encontrado!'
@@ -969,68 +968,6 @@ function fcn_fieldAutoBusca_gera(p_seletorAlvo) {
         } else console.log('Error! Declaração de tipo de campo.')
     });
 }
-
-function fcn_fieldAutobusa(pstr_caminhoWeb, pstr_campoSeletor, pint_delay, pint_minLength) {
-    //AUTO BUSCA PARA VALORES IGUAIS DO BANCO PARA CAMPO TEXTO NÃO RETORNA ID;
-    //AUTO COMPLETE - JQUERY
-    //NA COLUNA É RECOMENDADO ALTERAR PARA Latin1_General_CI_AI: NÃO CONSIDERA MAIUSCULA, MINUSCULA E ACENTUAÇÃO.
-
-    if (pstr_campoSeletor && pstr_caminhoWeb) {
-
-        if (!pint_delay) pint_delay = 800;
-        if (!pint_minLength) pint_minLength = 3;
-
-        $(pstr_campoSeletor).autocomplete({
-            delay: pint_delay,
-            minLength: pint_minLength,
-            source: function (request, response) {
-
-                /*
-                    EX: $('#[ID_DO_CAMPO]').data('parametros',{
-                            fl_status: 1 -- PARAMETRO ATRIBUIDO PELO PROGRAMDOR
-                            ,id_perfil: '#hdn_txt_perfil' --PARAMETRO ATRIBUIDO POR DETERMINADO VALOR DO CAMPO
-                        })
-                */
-                var dados = new Object();
-                if (request.term != '') dados['ds_busca'] = request.term;
-
-                $.ajax({
-                    type: "POST",
-                    datatype: "json",
-                    url: pstr_caminhoWeb,
-                    cache: false,
-                    data: dados
-                }).done(function (data) {
-                    response(data.resultado);
-                }).fail(function () {
-                    console.log("Error! Solicitacao ajax campo: '" + pstr_campoSeletor + "'.");
-                });
-            },
-            select: function (event, ui) {
-                if (ui.item.id != '') $(pstr_campoSeletor).val(ui.item.id);
-            }
-        }).data("ui-autocomplete")._renderMenu = function (ul, items) {
-            //PARA DISABILITAR UMA OPÇÃO BASTA COLOCAR UM CASE COM NOME DISABLED com valor;
-            /*EX:
-                CASE
-                    WHEN FL_STATUS = 1 THEN 1
-                END DISABLED
-                */
-            var that = this;
-            $.each(items, function (index, item) {
-                that._renderItemData(ul, item);
-            });
-            $(ul).find('li').filter(function () {
-                if ($(this).data('uiAutocompleteItem').disabled == true) return this
-            }).addClass('ui-state-disabled')
-            //.css('color','darkred');
-        };
-    } else {
-        console.log('Definição inválida!');
-    }
-
-}
-
 function fcn_colocarValor(p_seletor, p_valor) {
     var elemento = $(p_seletor);
     var Tag = elemento.prop('tagName');
