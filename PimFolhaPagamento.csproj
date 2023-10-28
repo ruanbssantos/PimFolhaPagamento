@@ -235,13 +235,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\BreadcrumbItem.cs" />
+    <Compile Include="Classes\Conexao.cs" />
     <Compile Include="Classes\NavigationService.cs" />
     <Compile Include="Classes\ResultadoBancoDados.cs" />
     <Compile Include="Controllers\AutoBusca\AutoBuscaController.cs" />
     <Compile Include="Controllers\Cbo\CboController.cs" />
     <Compile Include="Controllers\Empresa\EmpresaController.cs" />
     <Compile Include="Controllers\Funcionario\FuncionarioController.cs" />
+    <Compile Include="Controllers\Holerite\HoleriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\FolhaPonto\FolhaPontoController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -254,6 +258,7 @@
     <Content Include="_images\png\logo-semFundo.png" />
     <Content Include="_images\png\logo.png" />
     <Content Include="_images\png\logo2.png" />
+    <Content Include="_images\png\outubro-rosa.png" />
     <Content Include="_inc\css\jquery-ui.css" />
     <Content Include="_inc\css\sbAdmin.css" />
     <Content Include="_inc\css\site.css" />
@@ -2451,6 +2456,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Procedures\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2476,13 +2482,14 @@
     <Content Include="_inc\fonts\Poppins\Poppins-Regular.ttf" />
     <Content Include="_inc\fonts\Poppins\Poppins-SemiBold.ttf" />
     <Content Include="_inc\fonts\Poppins\Poppins-Thin.ttf" />
-    <Content Include="Views\Home\Consulta.cshtml" />
     <Content Include="Views\Cbo\Consulta.cshtml" />
     <Content Include="Views\Cbo\Formulario.cshtml" />
     <Content Include="Views\Empresa\Consulta.cshtml" />
     <Content Include="Views\Empresa\Formulario.cshtml" />
     <Content Include="Views\Funcionario\Consulta.cshtml" />
     <Content Include="Views\Funcionario\Formulario.cshtml" />
+    <Content Include="Views\FolhaPonto\Consulta.cshtml" />
+    <Content Include="Views\Holerite\Consulta.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

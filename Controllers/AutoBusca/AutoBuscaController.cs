@@ -11,35 +11,33 @@ namespace PimFolhaPagamento.Controllers.AutoBusca
 {
     public class AutoBuscaController : Controller
     {
+
+        Conexao conexao = new Conexao();
+
         // GET: AutoBusca
         public ActionResult Field_Cbo()
         {
             // Extraia os parâmetros do objeto JSON
             //string parametro1 = Request["parametro1"].ToString();
             //string parametro2 = Request["parametro2"].ToString();
-            ResultadoBancoDados dadosBanco = null; 
+            ResultadoBancoDados dadosBanco = null;
 
-            using (SqlConnection vstr_conexao = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["cstr_conexao"].ConnectionString))
+            conexao.AbrirConexao();
+            using (SqlCommand cmd = new SqlCommand())
             {
-                vstr_conexao.Open();
+                cmd.Connection = conexao.conn;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "SP_Cbo";
+                cmd.Parameters.Add("@vstr_tipoOper", System.Data.SqlDbType.VarChar).Value = "SEL";
+                cmd.Parameters.Add("@vstr_acao", System.Data.SqlDbType.NVarChar).Value = "Field_Cbo";
 
-                using (SqlCommand vobj_command = new SqlCommand())
-                {
-                    vobj_command.Connection = vstr_conexao;
-                    vobj_command.CommandType = System.Data.CommandType.StoredProcedure;
-                    vobj_command.CommandText = "SP_Cbo";
-                    vobj_command.Parameters.Add("@vstr_tipoOper", System.Data.SqlDbType.VarChar).Value = "SEL";
-                    vobj_command.Parameters.Add("@vstr_acao", System.Data.SqlDbType.NVarChar).Value = "Field_Cbo";
+                SqlDataReader rs = cmd.ExecuteReader();
+                dadosBanco = RsToArray.CriarJSONDoDataReader(rs);
 
-                    SqlDataReader vobj_rs = vobj_command.ExecuteReader();
-                    dadosBanco = RsToArray.CriarJSONDoDataReader(vobj_rs);
-                    
-                    vobj_rs.Close();
-                }
-
-                vstr_conexao.Close();
+                rs.Close();
             }
-
+            conexao.FecharConexao();
+             
 
             return Json(dadosBanco, JsonRequestBehavior.AllowGet);
 
