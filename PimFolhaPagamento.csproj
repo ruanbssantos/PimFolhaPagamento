@@ -239,6 +239,8 @@
     <Compile Include="Classes\ResultadoBancoDados.cs" />
     <Compile Include="Controllers\AutoBusca\AutoBuscaController.cs" />
     <Compile Include="Controllers\Cbo\CboController.cs" />
+    <Compile Include="Controllers\Empresa\EmpresaController.cs" />
+    <Compile Include="Controllers\Funcionario\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -249,12 +251,16 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="_images\png\logo-semFundo.png" />
     <Content Include="_images\png\logo.png" />
+    <Content Include="_images\png\logo2.png" />
     <Content Include="_inc\css\jquery-ui.css" />
     <Content Include="_inc\css\sbAdmin.css" />
     <Content Include="_inc\css\site.css" />
     <Content Include="_inc\favicon.ico" />
     <Content Include="_inc\fonts\googleFonts.css" />
+    <Content Include="_inc\jquery-confirm\jquery-confirm.min.css" />
+    <Content Include="_inc\jquery-confirm\jquery-confirm.min.js" />
     <Content Include="_inc\js\jquery-ui.js" />
     <Content Include="_inc\js\jquery.mask.js" />
     <Content Include="_inc\js\site.js" />
@@ -2445,7 +2451,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Procedures\" />
-    <Folder Include="Views\AutoBusca\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2472,7 +2477,12 @@
     <Content Include="_inc\fonts\Poppins\Poppins-SemiBold.ttf" />
     <Content Include="_inc\fonts\Poppins\Poppins-Thin.ttf" />
     <Content Include="Views\Home\Consulta.cshtml" />
-    <Content Include="Views\Cbo\ConsultaCbo.cshtml" />
+    <Content Include="Views\Cbo\Consulta.cshtml" />
+    <Content Include="Views\Cbo\Formulario.cshtml" />
+    <Content Include="Views\Empresa\Consulta.cshtml" />
+    <Content Include="Views\Empresa\Formulario.cshtml" />
+    <Content Include="Views\Funcionario\Consulta.cshtml" />
+    <Content Include="Views\Funcionario\Formulario.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

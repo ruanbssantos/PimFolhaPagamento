@@ -2,40 +2,34 @@
     ViewData["Title"] = "Home";
 }
 
+<div class="col-12 d-flex justify-content-end mb-2">
+    <div class="form-inline cursor-pointer" title="Novo" onclick="javascript: window.open('cad_acessoRapido','_self')">
+        <i class="fa fa-plus-circle plus-new-frm fa-2x"></i> &nbsp; Novo
+    </div>
+</div>
+
+<div class="btn-group dropstart">
+    <button type="button" class="btn-acesso-rapido dropdown-toggle no-arrow-dopdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Action</a></li>
+    </ul>
+</div>
+
 <div class="row">
     <div class="col-12">
         <div class="container-formulario shadow">
             <form>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-12">
-                                <label class="sub-titulo-form">Cliente</label>
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-header text-white bg-dark-secundary">
+                                Usuário
                             </div>
-                        </div>
-                        <hr class="hr-form" />
-                        <div class="row">
-                            <div class="col-12 px-5">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="obgMark form-label" for="txt_cliente">Cliente</label>
-                                            <input type="text" name="txt_cliente" id="txt_cliente" class="form-control obg field_autoBusca" data-field_type="Field_Cbo" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <label class="sub-titulo-form">Usuário</label>
-                            </div>
-                        </div>
-                        <hr class="hr-form" />
-                        <div class="row">
-                            <div class="col-12 px-5">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
@@ -59,6 +53,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12  mb-4">
+                        <div class="card">
+                            <div class="card-header text-white bg-dark-secundary">
+                                Cliente
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="obgMark form-label" for="txt_cliente">Cliente</label>
+                                            <input type="text" name="txt_cliente" id="txt_cliente" class="form-control obg field_autoBusca" data-field_type="Field_Cbo" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="col-12 text-center mt-5" id="div_containerBtnsPg">
                         <input type="button" class="btn btn-primary" name="btn_resetSenha" id="btn_resetSenha" value="Resetar Senha" title="Resetar Senha" />
                         <input type="button" class="btn btn-success" name="btn_gravar" id="btn_gravar" value="Gravar" title="Gravar" />

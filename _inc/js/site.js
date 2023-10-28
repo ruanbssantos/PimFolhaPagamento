@@ -448,6 +448,7 @@ function fcn_buscarIdsCep(pobj_enderecoRetorno, callback) {
 
 function fcn_valoresPadroes(p_seletor) {
 
+    const seletorInicial = (p_seletor ? p_seletor : 'body');
     p_seletor += ' input';
 
     $(p_seletor + '.maskTelefoneCelular').off('input.maskTelefoneCelular').on({
@@ -471,8 +472,13 @@ function fcn_valoresPadroes(p_seletor) {
     $(p_seletor + '.maskDiaBarraMes').mask('##/##');
     $(p_seletor + '.maskMesBarraAno').mask('##/####');
 
-
-
+    //marca campos
+    $(seletorInicial).find('input.obg,textarea.obg').map(function () {
+        const label = $('label[for=' + $(this).prop('id') + ']');
+        if (label.length > 0) {
+            if (!label.hasClass('obgMark')) label.addClass('obgMark');
+        }
+    });
 }
 
 function fcn_accordionControlArrow(p_seletor) {
@@ -818,7 +824,7 @@ function fcn_fieldAutoBusca_gera(p_seletorAlvo) {
             $('#' + vstr_idCampo)
                 .before('<div class="container-field d-flex">')
                 .siblings('.container-field:first')
-                .append($('#' + vstr_idCampo).attr({ placeholder: 'Digite para buscar...', maxlength: 255 }))
+                .append($('#' + vstr_idCampo).attr({ maxlength: 255 }))
                 .append(btn);
 
 
@@ -1177,70 +1183,77 @@ function fcn_limparCampos(p_seletor) {
 function fcn_gera_paginacao(p_seletor, pint_registroInicial, pint_totalRegistro, pint_qtdRegistroPagina, pobj_resultado, pbln_criarBotaoEdicao) {
     let arr_data = [];
     //PERCORRER LINHAS
-    $.each(pobj_resultado, function (indice, registro) {
 
-        var registroTratado = new Object;
+    if (pobj_resultado.length > 0) {
+        $.each(pobj_resultado, function (indice, registro) {
 
-        let vstr_linha = '';
-        let pk = '';
-        arr_data = [];
-        //PERCORRE CAMPOS
-        $.each(registro, function (campo, valor) {
-            let vstr_campoTratado = campo;
-            let oculto = '';
-            let data = '';
-            if (campo.indexOf('|') > 0) {
-                if (campo.split('|')[1].toString().toUpperCase() == 'OCULTO') oculto = 1;
-                if (campo.split('|')[1].toString().toUpperCase() == 'PK') {
-                    pk = valor;
-                    oculto = 1;
+            var registroTratado = new Object;
+
+            let vstr_linha = '';
+            let pk = '';
+            arr_data = [];
+            //PERCORRE CAMPOS
+            $.each(registro, function (campo, valor) {
+                let vstr_campoTratado = campo;
+                let oculto = '';
+                let data = '';
+                if (campo.indexOf('|') > 0) {
+                    if (campo.split('|')[1].toString().toUpperCase() == 'OCULTO') oculto = 1;
+                    if (campo.split('|')[1].toString().toUpperCase() == 'PK') {
+                        pk = valor;
+                        oculto = 1;
+                    }
+                    if (campo.split('|')[1].toString().toUpperCase() == 'DATA') {
+                        data = 1;
+                        arr_data.push([campo.split('|')[0], valor]);
+                    }
+                    vstr_campoTratado = campo.split('|')[0];
                 }
-                if (campo.split('|')[1].toString().toUpperCase() == 'DATA') {
-                    data = 1;
-                    arr_data.push([campo.split('|')[0], valor]);
-                }
-                vstr_campoTratado = campo.split('|')[0];
-            }
-            if (oculto != '1' && data != '1') vstr_linha += '<td class="' + vstr_campoTratado + '">' + valor + '</td>'
+                if (oculto != '1' && data != '1') vstr_linha += '<td class="' + vstr_campoTratado + '">' + valor + '</td>'
 
-            registroTratado[vstr_campoTratado] = valor;
+                registroTratado[vstr_campoTratado] = valor;
 
-        })
-        //CRIA BOTÃO EDIT DEFAULT
-        vstr_linha += (pk != '' && pbln_criarBotaoEdicao == '1' ? '<td class="text-center btn_default_pag"><button type="button" class="btn btn-outline-secondary btn_edit" data-id="' + pk + '" title="Alterar"><i class="fas fa-edit"></i></button></td>' : '')
-        $(p_seletor + ' tbody').append('<tr data-id="' + pk + '">' + vstr_linha + '</tr>').find('tr:last').data('registro', registroTratado);
-        if (arr_data.length > 0) {
-            arr_data.forEach(function (e, i) {
-                $(p_seletor + ' tbody tr:last').data(e[0], e[1])
             })
+            //CRIA BOTÃO EDIT DEFAULT
+            vstr_linha += (pk != '' && pbln_criarBotaoEdicao == '1' ? '<td class="text-center btn_default_pag"><button type="button" class="btn btn-outline-secondary btn_edit" data-id="' + pk + '" title="Alterar"><i class="fas fa-edit"></i></button></td>' : '')
+            $(p_seletor + ' tbody').append('<tr data-id="' + pk + '">' + vstr_linha + '</tr>').find('tr:last').data('registro', registroTratado);
+            if (arr_data.length > 0) {
+                arr_data.forEach(function (e, i) {
+                    $(p_seletor + ' tbody tr:last').data(e[0], e[1])
+                })
+            }
+        });
+
+        vint_ultimoRegistro = (pint_registroInicial + (+pint_qtdRegistroPagina));
+        vint_paginaAtual = Math.ceil(pint_registroInicial / pint_qtdRegistroPagina);
+        vint_paginaFinal = Math.ceil(pint_totalRegistro / pint_qtdRegistroPagina);
+        vint_rangeBtn = 1;
+        $(p_seletor + ' .menssagem').html('Mostrando registros de ' + pint_registroInicial + ' até ' + (pint_totalRegistro > (vint_ultimoRegistro - 1) ? (vint_ultimoRegistro - 1) : pint_totalRegistro) + ', de ' + pint_totalRegistro);
+
+        //INCLUI BOTÃO COM PÁGINA ATUAL
+        $(p_seletor + ' .paginacao').html('<input name="btn_paginas" id="btn_pagina_' + vint_paginaAtual + '" class="btn btn_paginas btn-success" type="button" data-value="' + vint_paginaAtual + '" value="' + vint_paginaAtual + '">');
+
+        //CRIA BOTÕES ANTES E DEPOIS DA PÁGINA ATUAL (SOMANDO E SUBTRAINDO)
+        if (vint_rangeBtn > 0) {
+            for (let i = 1; i <= vint_rangeBtn; i++) {
+                $(p_seletor + ' .paginacao').prepend('<input name="btn_paginas" id="btn_pagina_' + (vint_paginaAtual - i) + '" class="btn btn_paginas btn-secondary" type="button" data-value="' + (vint_paginaAtual - i) + '" value="' + (vint_paginaAtual - i) + '">');
+                $(p_seletor + ' .paginacao').append('<input name="btn_paginas" id="btn_pagina_' + (vint_paginaAtual + i) + '" class="btn btn_paginas btn-secondary" type="button" data-value="' + (vint_paginaAtual + i) + '" value="' + (vint_paginaAtual + i) + '">');
+            }
         }
-    });
 
-    vint_ultimoRegistro = (pint_registroInicial + (+pint_qtdRegistroPagina));
-    vint_paginaAtual = Math.ceil(pint_registroInicial / pint_qtdRegistroPagina);
-    vint_paginaFinal = Math.ceil(pint_totalRegistro / pint_qtdRegistroPagina);
-    vint_rangeBtn = 1;
-    $(p_seletor + ' .menssagem').html('Mostrando registros de ' + pint_registroInicial + ' até ' + (pint_totalRegistro > (vint_ultimoRegistro - 1) ? (vint_ultimoRegistro - 1) : pint_totalRegistro) + ', de ' + pint_totalRegistro);
+        //REMOVE BTNS MAIORES QUE A PÁGINA FINAL E MENOR QUE A PÁGINA ATUAL
+        $(p_seletor + ' .btn_paginas').filter(function () { return $(this).val() < 1 || $(this).val() > vint_paginaFinal }).remove();
 
-    //INCLUI BOTÃO COM PÁGINA ATUAL
-    $(p_seletor + ' .paginacao').html('<input name="btn_paginas" id="btn_pagina_' + vint_paginaAtual + '" class="btn btn_paginas btn-success" type="button" data-value="' + vint_paginaAtual + '" value="' + vint_paginaAtual + '">');
-
-    //CRIA BOTÕES ANTES E DEPOIS DA PÁGINA ATUAL (SOMANDO E SUBTRAINDO)
-    if (vint_rangeBtn > 0) {
-        for (let i = 1; i <= vint_rangeBtn; i++) {
-            $(p_seletor + ' .paginacao').prepend('<input name="btn_paginas" id="btn_pagina_' + (vint_paginaAtual - i) + '" class="btn btn_paginas btn-secondary" type="button" data-value="' + (vint_paginaAtual - i) + '" value="' + (vint_paginaAtual - i) + '">');
-            $(p_seletor + ' .paginacao').append('<input name="btn_paginas" id="btn_pagina_' + (vint_paginaAtual + i) + '" class="btn btn_paginas btn-secondary" type="button" data-value="' + (vint_paginaAtual + i) + '" value="' + (vint_paginaAtual + i) + '">');
+        //ADD PÁGINA INCIAL E FINAL
+        if (vint_paginaFinal > 5) {
+            $(p_seletor + ' .paginacao').prepend('<input name="btn_paginas" id="btn_pagina_primeiro" class="btn btn_paginas btn-secondary" type="button" data-value="1" value="Primeiro">');
+            $(p_seletor + ' .paginacao').append('<input name="btn_paginas" id="btn_pagina_ultimo" class="btn btn_paginas btn-secondary"  data-value="' + vint_paginaFinal + '" type="button" value="Último">');
         }
-    }
 
-    //REMOVE BTNS MAIORES QUE A PÁGINA FINAL E MENOR QUE A PÁGINA ATUAL
-    $(p_seletor + ' .btn_paginas').filter(function () { return $(this).val() < 1 || $(this).val() > vint_paginaFinal }).remove();
-
-    //ADD PÁGINA INCIAL E FINAL
-    if (vint_paginaFinal > 5) {
-        $(p_seletor + ' .paginacao').prepend('<input name="btn_paginas" id="btn_pagina_primeiro" class="btn btn_paginas btn-secondary" type="button" data-value="1" value="Primeiro">');
-        $(p_seletor + ' .paginacao').append('<input name="btn_paginas" id="btn_pagina_ultimo" class="btn btn_paginas btn-secondary"  data-value="' + vint_paginaFinal + '" type="button" value="Último">');
+    } else {
+        $(p_seletor + ' tbody').html('<tr class="tr_remove text-center"><td  colspan="100%">Nenhum registro encontrado!</td></tr>');
     }
+    
 }
 function fcn_testaRegex(regex, str) {
     return regex.test(str);

@@ -42,18 +42,18 @@ namespace PimFolhaPagamento.Controllers
             return View();
         }
 
-        // Ação para inserir um funcionário
-        [HttpPost]
-        public JsonResult Inserir(Funcionario funcionario)
-        {
-            if (ModelState.IsValid)
-            {
+        //// Ação para inserir um funcionário
+        //[HttpPost]
+        //public JsonResult Inserir(Funcionario funcionario)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
 
-                return Json(new { success = true, message = "Funcionário inserido com sucesso!" });
-            }
+        //        return Json(new { success = true, message = "Funcionário inserido com sucesso!" });
+        //    }
 
-            return Json(new { success = false, errors = ModelState.Values.SelectMany(v => v.Errors) });
-        }
+        //    return Json(new { success = false, errors = ModelState.Values.SelectMany(v => v.Errors) });
+        //}
 
     }
 }

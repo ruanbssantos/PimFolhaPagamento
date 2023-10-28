@@ -4,16 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PimFolhaPagamento.Controllers.Cbo
+namespace PimFolhaPagamento.Controllers.Empresa
 {
-    public class CboController : Controller
-    { 
-        private readonly string vstr_title = "CBO";
+    public class EmpresaController : Controller
+    {
+        private readonly string vstr_title = "Empresa";
 
-        // GET: Cbo
         public ActionResult Consulta()
         {
-            ViewBag.Title = "CBO";
+            ViewBag.Title = vstr_title;
             return View();
         }
 

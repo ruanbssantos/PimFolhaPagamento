@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="~/_inc/css/jquery-ui.css">
     <script src="~/_inc/js/jquery-ui.js"></script>
 
+    <!-- JQUERY confirm -->
+    <link rel="stylesheet" href="~/_inc/jquery-confirm/jquery-confirm.min.css">
+    <script src="~/_inc/jquery-confirm/jquery-confirm.min.js"></script>
+
+
     <!--CONFIGURAÇÃO SITE-->
     <link rel="stylesheet" href="~/_inc/css/site.css" asp-append-version="true" />
     <script src="~/_inc/js/site.js" asp-append-version="true"></script>
@@ -38,7 +43,7 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark shadow-lg" id="menuTopo">
         <a class="navbar-brand d-flex justify-content-center align-items-center" href="~/Home/Index" style="margin-right: -1.2px ">
             @*<i class="fa-solid fa-crown fas-2x" style="color:#BDA14E!important"></i> King's Solutions*@
-            <img src="~/_images/png/logo2.png" style="height:50px" />
+            <img src="~/_images/png/logo-semFundo.png" style="height:50px" />
         </a>
         <div class="divisor-logo-topo"></div>
         <!-- Sidebar Toggle-->
@@ -62,48 +67,37 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Home/Index">
-                                <i class="fa-solid fa-house d-block mb-1"></i>
-                                Página Inicial
-                            </a>
-                        </div>
+                        <a class="nav-item" href="~/Home/Index">
+                            <i class="fa-solid fa-house me-2"></i>
+                            Página Inicial
+                        </a>
+                        <hr class="sidebar-divider">
+                        <a class="nav-item" href="~/Empresa/Consulta"/>
+                            <i class="fa-solid fa-building me-2"></i>
+                            Empresa
+                        </a>
+                        <hr class="sidebar-divider"/>
+                        <a class="nav-item" href="~/Funcionario/Consulta" >
+                            <i class="fa-solid fa-user me-2"></i>
+                            Funcionário
+                        </a>
                         <hr class="sidebar-divider" />
-                        <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Home/Index">
-                                <i class="fa-solid fa-building d-block mb-1"></i>
-                                Empresa
-                            </a>
-                        </div>
+                        <a class="nav-item" href="~/Cbo/Consulta">
+                            <i class="fa-solid fa-rectangle-list me-2"></i>
+                            CBO
+                        </a>
                         <hr class="sidebar-divider" />
-                        <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Home/Index">
-                                <i class="fa-solid fa-user d-block mb-1"></i>
-                                Funcionário
-                            </a>
-                        </div>
+                        <a class="nav-item" href="~/Home/Index">
+                            <i class="fa-solid fa-clock me-2"></i>
+                            Horas
+                        </a>
                         <hr class="sidebar-divider" />
-                        <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Cbo/ConsultaCbo">
-                                <i class="fa-solid fa-rectangle-list d-block mb-1"></i>
-                                CBO
-                            </a>
-                        </div>
+                        <a class="nav-item" href="~/Home/Index">
+                            <i class="fa-solid fa-file-invoice-dollar  me-2"></i>
+                            Holerite
+                        </a>
                         <hr class="sidebar-divider" />
-                        <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Home/Index">
-                                <i class="fa-solid fa-clock d-block mb-1"></i>
-                                Horas
-                            </a>
-                        </div>
-                        <hr class="sidebar-divider" />
-                        <div class="nav-item">
-                            <a class="nav-link text-center d-block" href="~/Home/Index">
-                                <i class="fa-solid fa-file-invoice-dollar d-block mb-1"></i>
-                                Holerite
-                            </a>
-                        </div>
-                        <hr class="sidebar-divider" />
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer text-center">
@@ -115,7 +109,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4 titulo-pg">@ViewData["Title"]</h1>
                     <ol class="breadcrumb mb-4">
                         @*@foreach (var item in ViewBag.Breadcrumb)
                         {
@@ -131,10 +124,8 @@
                             </li>
                         }*@
                     </ol>
-                </div>
-                <div class="container-fluid px-4">
-                    @RenderBody()
-                </div>
+                </div>                
+                @RenderBody()
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
@@ -152,6 +143,11 @@
     </div>
 
     <script src="~/_inc/js/jquery.mask.js"></script>
+
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
