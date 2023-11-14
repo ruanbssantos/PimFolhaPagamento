@@ -2490,6 +2490,7 @@
     <Content Include="Views\Funcionario\Formulario.cshtml" />
     <Content Include="Views\FolhaPonto\Consulta.cshtml" />
     <Content Include="Views\Holerite\Consulta.cshtml" />
+    <Content Include="Views\Shared\_HeadContent.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

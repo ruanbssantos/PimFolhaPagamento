@@ -2,46 +2,12 @@
 <html lang="pt-br">
 <head>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="1.0.0" />
-    <meta name="author" content="Ruan Basílio Sobral dos Santos" />
-    <title>@ViewData["Title"] - FolhaPagamento</title>
+    @Html.Partial("_HeadContent")
 
-
-    <!-- BOOTSTRAP E SBADMIN-->
-    <link rel="stylesheet" href="~/_inc/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/_inc/css/sbAdmin.css" asp-append-version="true" />
-
-    <!--FONTAWESOME-->
-    <link href="~/_inc/lib/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="~/_inc/lib/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="~/_inc/lib/fontawesome/css/solid.css" rel="stylesheet">
-
-    <!-- JQUERY E BOOTSTRAP -->
-    <script src="~/_inc/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/_inc/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- AUTO COMPLETE -->
-    <link rel="stylesheet" href="~/_inc/css/jquery-ui.css">
-    <script src="~/_inc/js/jquery-ui.js"></script>
-
-    <!-- JQUERY confirm -->
-    <link rel="stylesheet" href="~/_inc/jquery-confirm/jquery-confirm.min.css">
-    <script src="~/_inc/jquery-confirm/jquery-confirm.min.js"></script>
-
-
-    <!--CONFIGURAÇÃO SITE-->
-    <link rel="stylesheet" href="~/_inc/css/site.css" asp-append-version="true" />
-    <script src="~/_inc/js/site.js" asp-append-version="true"></script>
 </head>
 <body class="sb-nav-fixed">
-
-    @RenderSection("head", false)
-
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark shadow-lg" id="menuTopo">
-        <a class="navbar-brand d-flex justify-content-center align-items-center d-none" href="~/Home/Index" style="margin-right: -1.2px ">
+        <a class="navbar-brand d-flex justify-content-center align-items-center" href="~/Home/Index" style="margin-right: -1.2px ">
             @*<i class="fa-solid fa-crown fas-2x" style="color:#BDA14E!important"></i> King's Solutions*@
             <img src="~/_images/png/logo-semFundo.png" style="height:50px" />
         </a>
